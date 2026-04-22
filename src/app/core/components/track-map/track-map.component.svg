@@ -1,0 +1,33 @@
+@if (scaleTrackCorners(circuitData()); as circuitData) {
+  <div class="bg-white/10 rounded-4xl h-full max-w-full aspect-square mx-auto flex items-center justify-center p-4 box-border">
+
+    <svg [attr.viewBox]="'0 0 ' + svgSize + ' ' + svgSize"
+         class="max-h-full">
+
+      <polyline
+        [attr.points]="this.getTrackLayoutCoordinates(circuitData)"
+        fill="none"
+        stroke="#FFF"
+        stroke-width="15"
+        stroke-linejoin="round"/>
+
+      @for (corner of circuitData.corners; track corner) {
+        <g>
+          <circle
+            [attr.cx]="corner.trackPosition.x"
+            [attr.cy]="corner.trackPosition.y"
+            r="12"
+            fill="red"/>
+          <text
+            [attr.x]="corner.trackPosition.x + 12"
+            [attr.y]="corner.trackPosition.y + 5"
+            class="font-bold text-3xl fill-white stroke-black stroke-[6px] [paint-order:stroke]">
+            T{{ corner.number }}
+          </text>
+        </g>
+      }
+      <g app-track-cars [carsPath]="scaledCarsPaths()"></g>
+    </svg>
+  </div>
+}
+

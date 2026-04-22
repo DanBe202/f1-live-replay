@@ -1,0 +1,17 @@
+<svg overflow="visible">
+  @for (location of currentLocations().values(); track location.driver_number) {
+    <g [style.transform]="'translate(' + location.x + 'px, ' + location.y + 'px)'">
+      <circle cx="0"
+              cy="0"
+              r="10"
+              fill="blue">
+      </circle>
+
+      <text x="12"
+            y="5"
+            class="font-bold text-3xl fill-white stroke-black stroke-[6px] [paint-order:stroke]">
+        {{ location.driver_number }}
+      </text>
+    </g>
+  }
+</svg>
