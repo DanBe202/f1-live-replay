@@ -1,0 +1,38 @@
+@if (this.meeting(); as meeting) {
+  <section>
+    @if (this.loading()) {
+      <div class="skeleton h-32 w-32"></div>
+    } @else {
+      <div class="flex items-center justify-between gap-8">
+        <h1 class="text-3xl">{{ meeting.meeting_official_name }}</h1>
+        <img [src]=meeting.country_flag
+             [alt]=meeting.circuit_short_name
+             class="h-24 rounded-lg">
+      </div>
+    }
+    <div class="flex flex-col gap-4">
+      <div class="overflow-x-auto">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Start</th>
+            <th>End</th>
+          </tr>
+          </thead>
+          <tbody>
+            @for (session of this.sessions(); track session) {
+              <tr class="hover:bg-base-300 cursor-pointer" [routerLink]="['../', 'session', session.session_key]">
+                <th>{{ session.session_type }}</th>
+                <td>{{ session.session_name }}</td>
+                <td>{{ session.date_start | date: "MMM dd, yyyy 'at' hh:mm a '('O')'" }}</td>
+                <td>{{ session.date_end | date: "MMM dd, yyyy 'at' hh:mm a '('O')'" }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+}

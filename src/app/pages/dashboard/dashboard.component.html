@@ -1,0 +1,33 @@
+<section>
+  <div class="p-6 bg-base-200 min-h-screen font-bold">
+    <div class="rounded-lg p-4 bg-base-100 flex flex-col gap-4">
+      <h1 class="text-3xl">Next meetings</h1>
+      <div class="carousel w-full rounded-box gap-4">
+        @for (meeting of this.meetings(); track meeting) {
+          <a class="carousel-item m-0" [routerLink]="['/', 'meetings', meeting.meeting_key]">
+            <div class="card w-64 bg-base-300 card-xs shadow-sm">
+              <div class="card-body">
+                <h2 class="card-title text-xl">{{ meeting.circuit_short_name }}</h2>
+                <div class="text-xs">
+                  <div class="flex flex-col align-start">
+                    <div>{{ meeting.date_start | date: 'mediumDate' }}</div>
+                  </div>
+                  <div class="flex w-full flex-col itens-start">
+                    <div class="divider divider-info divider-start m-0">Start</div>
+                    <div class="divider divider-info divider-end m-0">End</div>
+                  </div>
+                  <div class="flex flex-col items-end">
+                    <div>{{ meeting.date_end | date: 'mediumDate' }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        }
+      </div>
+      <a></a>
+    </div>
+
+  </div>
+</section>
+

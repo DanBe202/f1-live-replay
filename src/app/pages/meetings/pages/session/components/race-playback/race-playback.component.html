@@ -1,0 +1,23 @@
+<section class="flex flex-col h-full w-full">
+
+  <div class="flex gap-4 p-4 justify-center bg-gray-900 rounded-t-xl">
+    <button (click)="skip(1000)"
+            class="px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-500 cursor-pointer">
+      +1 Sec
+    </button>
+    <button (click)="skip(10000)"
+            class="px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-500 cursor-pointer">
+      +10 Sec
+    </button>
+  </div>
+
+  @if (circuitData(); as data) {
+    @if (carsPaths(); as carsPaths) {
+      <app-track-map
+        [circuitData]="data"
+        [carsPaths]="carsPaths"
+        class="block w-full h-[50vh]">
+      </app-track-map>
+    }
+  }
+</section>
